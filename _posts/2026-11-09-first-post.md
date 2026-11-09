@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "XYZ"
+title: "Placeholder: replace me"
 date: 2026-11-09
 ---
 
-testing
+Your first post goes here.
