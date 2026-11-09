@@ -1,0 +1,77 @@
+---
+layout: default
+---
+{% assign posts = site.posts %}
+{% assign featured = posts | where: "featured", true | first %}
+{% unless featured %}{% assign featured = posts | first %}{% endunless %}
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>{{ site.tagline }}</h1>
+    <p class="lead">{{ site.description }} Satire about technology, based on real events.</p>
+    <p class="muted"><a href="{{ '/feed.xml' | relative_url }}">Get the blog as RSS</a></p>
+    <p class="stat"><strong>{{ posts.size }}</strong> {% if posts.size == 1 %}article{% else %}articles{% endif %}</p>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="cookie-card">
+      <p>We value your privacy.<br>(Please ignore the 1,412 partners.)</p>
+      <span class="btn-big">Accept All</span>
+      <span class="btn-tiny">manage preferences</span>
+    </div>
+  </div>
+</section>
+
+{% if site.categories.size > 0 %}
+<section class="topics">
+  <h2 class="section-label">Search blog by topics</h2>
+  <div class="chips" id="chips">
+    {% assign cats = site.categories | sort %}
+    {% for cat in cats %}
+      <button type="button" class="chip" data-topic="{{ cat[0] | slugify }}">{{ cat[0] }}</button>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if featured %}
+<section class="featured">
+  <h2 class="section-label">Featured article</h2>
+  <a class="featured-card" href="{{ featured.url | relative_url }}">
+    <div class="featured-body">
+      <h3>{{ featured.title }}</h3>
+      <p class="meta">{{ featured.content | number_of_words | divided_by: 220 | plus: 1 }} min read</p>
+      <p>{{ featured.excerpt | strip_html | truncatewords: 40 }}</p>
+      <span class="link-btn">Read full article &rarr;</span>
+    </div>
+    <div class="thumb c{{ featured.date | date: '%-d' | modulo: 5 }}"></div>
+  </a>
+</section>
+{% endif %}
+
+<section class="articles">
+  <div class="articles-head">
+    <h2 class="section-label">Articles</h2>
+    <label class="sort">Sort by
+      <select id="sort">
+        <option value="new">Newest</option>
+        <option value="old">Oldest</option>
+      </select>
+    </label>
+  </div>
+  <div class="grid" id="grid">
+    {% for post in posts %}
+    <a class="card" href="{{ post.url | relative_url }}"
+       data-date="{{ post.date | date: '%s' }}"
+       data-topics="{% for c in post.categories %}{{ c | slugify }} {% endfor %}">
+      <div class="thumb c{{ post.date | date: '%-d' | modulo: 5 }}"></div>
+      <div class="card-body">
+        <p class="meta">{{ post.date | date: "%-d %B %Y" }} &mdash; {{ post.content | number_of_words | divided_by: 220 | plus: 1 }} min read</p>
+        <h3>{{ post.title }}</h3>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <p class="muted empty" id="empty" hidden>No articles under that topic yet.</p>
+</section>
+
+<script src="{{ '/assets/js/home.js' | relative_url }}"></script>

@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<article class="post">
+  <p class="meta"><a href="{{ '/' | relative_url }}">&larr; All articles</a></p>
+  <h1>{{ page.title }}</h1>
+  <p class="meta">{{ page.date | date: "%-d %B %Y" }} &mdash; {{ content | number_of_words | divided_by: 220 | plus: 1 }} min read
+    {% for c in page.categories %}<span class="tag">{{ c }}</span>{% endfor %}</p>
+  <div class="post-content">{{ content }}</div>
+</article>
