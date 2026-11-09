@@ -1,6 +1,21 @@
 <footer class="site-footer">
-  <div class="wrapper">
-    <p>You have 47 unread posts. <a href="#">Accept all</a> · <a href="#">Manage preferences</a></p>
-    <p>&copy; 2026 Evie Sanders. All rights reserved. Code: MIT.</p>
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-brand">{{ site.title }}</p>
+      <p class="muted">{{ site.tagline }} Satire about technology, based on real events.</p>
+    </div>
+    <div>
+      <p class="footer-head">Sitemap</p>
+      <ul class="footer-links">
+        <li><a href="{{ '/' | relative_url }}">Blog</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+        <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-head">Preferences</p>
+      <p class="muted">You have 47 unread posts.<br><a href="#">Accept all</a> &middot; <a href="#">Manage preferences</a></p>
+    </div>
   </div>
+  <div class="container footer-base muted">&copy; 2026 Evie Sanders. All rights reserved. Code: MIT.</div>
 </footer>
