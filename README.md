@@ -1,5 +1,5 @@
 # Ad Nauseam
 
-Tech satire by Evie Sanders (Veekse).
+Veekse's little tech blog :)
 
 Code is MIT licensed. Post content in `_posts/` is (c) Evie Sanders, all rights reserved.
